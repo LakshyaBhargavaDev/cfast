@@ -1,11 +1,16 @@
 #!/bin/bash
 
-codename="$@"
+codename="$1"
 filename="${codename//'.cpp'/}"
 
 echo "compiling"
 g++ "$codename" -o filename
 echo "done compiling"
 
-echo "Running file"
+echo "output"
+echo
+
 ./$filename
+
+echo
+echo "end"
