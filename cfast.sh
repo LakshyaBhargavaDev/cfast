@@ -1,16 +1,30 @@
 #!/bin/bash
 
+if [ $# = 0 ]; then
+  echo "No arguments Passed"
+  echo "Use -h for help"
+fi
+
 codename="$1"
-filename="${codename//'.cpp'/}"
+if [ -f "./$codename" ]; then
+  filename="${codename//'.cpp'/}"
 
-echo "compiling"
-g++ "$codename" -o filename
-echo "done compiling"
+  if [ "$verbose=true" ]; then
+    echo "compiling"
+  fi
 
-echo "output"
-echo
+  g++ "$codename" -o filename
+  if [ "$verbose=true" ]; then
+    echo "done compiling"
 
-./$filename
+    echo "output"
+  fi
+  echo
 
-echo
-echo "end"
+  if [ -f "./$filename" ]; then
+    ./$filename
+  fi
+
+  echo
+  echo "end"
+fi
