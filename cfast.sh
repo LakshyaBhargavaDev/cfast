@@ -1,11 +1,30 @@
 #!/bin/bash
 
+#If no options are passed
 if [ $# = 0 ]; then
-  echo "No arguments Passed"
+  echo "No arguments passed"
   echo "Use -h for help"
 fi
 
+#menu options
+while getopts "hv" OPTION; do
+  case $OPTION in
+
+  v)
+    ECHO="true"
+    echo 0
+    ;;
+
+  h)
+    echo "Usage:"
+    exit 0
+    ;;
+
+  esac
+done
+#main compiling
 codename="$1"
+
 if [ -f "./$codename" ]; then
   filename="${codename//'.cpp'/}"
 
@@ -28,3 +47,4 @@ if [ -f "./$codename" ]; then
   echo
   echo "end"
 fi
+j
